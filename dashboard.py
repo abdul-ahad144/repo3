@@ -6,37 +6,6 @@ from utils.metrics import interview_success_rate, round_efficiency
 
 def dashboard():
 
-    # ---------------------------------------------------
-    # TOP BUTTONS
-    # ---------------------------------------------------
-
-    colx, coly = st.columns(2)
-
-    # ===================================================
-    # ONLY ADMIN CAN ACCESS STUDENT MANAGEMENT
-    # ===================================================
-
-    with colx:
-
-        if st.session_state.get("user") == "admin":
-
-            if st.button("🎓 Student Management"):
-
-                st.session_state.page = "students"
-                st.rerun()
-
-    # ===================================================
-    # LOGOUT
-    # ===================================================
-
-    with coly:
-
-        if st.button("🚪 Logout"):
-
-            st.session_state.logged_in = False
-            st.session_state.page = "landing"
-            st.rerun()
-
     st.title("🚀 PragyanAI Placement Intelligence Engine")
 
     # ---------------------------------------------------
@@ -65,8 +34,10 @@ def dashboard():
     df.columns = df.columns.str.strip()
 
     # ---------------------------------------------------
-    # SIDEBAR FILTERS
+    # SIDEBAR
     # ---------------------------------------------------
+
+    st.sidebar.title("⚙ Dashboard Panel")
 
     st.sidebar.header("🔍 Filters")
 
@@ -85,6 +56,10 @@ def dashboard():
         df["Job_Role"].unique()
     )
 
+    # ---------------------------------------------------
+    # APPLY FILTERS
+    # ---------------------------------------------------
+
     if st.sidebar.button("Apply Filters"):
 
         if domain:
@@ -96,7 +71,41 @@ def dashboard():
         if role:
             df = df[df["Job_Role"].isin(role)]
 
+    # ---------------------------------------------------
+    # RESET FILTERS
+    # ---------------------------------------------------
+
     if st.sidebar.button("Reset Filters"):
+
+        st.rerun()
+
+    st.sidebar.markdown("---")
+
+    # ---------------------------------------------------
+    # ADMIN PANEL
+    # ---------------------------------------------------
+
+    if st.session_state.get("user") == "admin":
+
+        st.sidebar.subheader("🛠 Admin Controls")
+
+        if st.sidebar.button("🎓 Student Management"):
+
+            st.session_state.page = "students"
+
+            st.rerun()
+
+    st.sidebar.markdown("---")
+
+    # ---------------------------------------------------
+    # LOGOUT
+    # ---------------------------------------------------
+
+    if st.sidebar.button("🚪 Logout"):
+
+        st.session_state.logged_in = False
+
+        st.session_state.page = "landing"
 
         st.rerun()
 
