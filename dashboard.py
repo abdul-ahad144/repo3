@@ -12,12 +12,22 @@ def dashboard():
 
     colx, coly = st.columns(2)
 
+    # ===================================================
+    # ONLY ADMIN CAN ACCESS STUDENT MANAGEMENT
+    # ===================================================
+
     with colx:
 
-        if st.button("🎓 Student Management"):
+        if st.session_state.get("user") == "admin":
 
-            st.session_state.page = "students"
-            st.rerun()
+            if st.button("🎓 Student Management"):
+
+                st.session_state.page = "students"
+                st.rerun()
+
+    # ===================================================
+    # LOGOUT
+    # ===================================================
 
     with coly:
 
@@ -55,7 +65,7 @@ def dashboard():
     df.columns = df.columns.str.strip()
 
     # ---------------------------------------------------
-    # SIDEBAR
+    # SIDEBAR FILTERS
     # ---------------------------------------------------
 
     st.sidebar.header("🔍 Filters")
@@ -219,7 +229,7 @@ def dashboard():
             st.bar_chart(project_data)
 
     # ---------------------------------------------------
-    # PROBABILITY
+    # PROBABILITY CALCULATOR
     # ---------------------------------------------------
 
     st.markdown("## 🎯 Placement Probability Calculator")
