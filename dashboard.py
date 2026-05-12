@@ -79,13 +79,13 @@ def dashboard():
 
         st.rerun()
 
-    st.sidebar.markdown("---")
-
     # ---------------------------------------------------
     # ADMIN PANEL
     # ---------------------------------------------------
 
     if st.session_state.get("user") == "admin":
+
+        st.sidebar.markdown("---")
 
         st.sidebar.subheader("🛠 Admin Controls")
 
@@ -95,11 +95,11 @@ def dashboard():
 
             st.rerun()
 
-    st.sidebar.markdown("---")
-
     # ---------------------------------------------------
     # LOGOUT
     # ---------------------------------------------------
+
+    st.sidebar.markdown("---")
 
     if st.sidebar.button("🚪 Logout"):
 
