@@ -6,7 +6,7 @@ from utils.metrics import interview_success_rate, round_efficiency
 
 def dashboard():
 
-    st.title("🚀 PragyanAI Placement Intelligence Engine")
+    st.title("PragyanAI Placement Intelligence Engine")
 
     # ---------------------------------------------------
     # LOAD DATA
