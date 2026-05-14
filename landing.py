@@ -74,7 +74,7 @@ def landing_page():
         st.markdown("<div class='main-box'>", unsafe_allow_html=True)
 
         st.markdown(
-            "<div class='title'>🚀 PragyanAI Login System</div>",
+            "<div class='title'>PragyanAI Login System</div>",
             unsafe_allow_html=True
         )
 
